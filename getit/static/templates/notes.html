@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Get-it</title>
+</head>
+<body>
+
+<img src="{{ url_for('static', filename='img/logo-getit.png') }}">
+<p>Como o Post-it, mas com outro verbo</p>
+<form action="/submit" method="POST">
+    <label for="titulo">Título</label>
+    <input id="titulo" type="text" name="titulo" />
+    <label for="detalhes">Detalhes</label>
+    <input id="detalhes" name="detalhes" />
+    <input type="submit" />
+  </form>
+
+<ul>
+{notes}
+</ul>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Get-it</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="appbar">
+        <img src="{{ url_for('static', filename='img/logo-getit.png') }}" class="logo">
+        <p>Como o Post-it, mas com outro verbo</p>
+    </div>
+
+    <main class="container">
+        <!-- Formulário para criar uma nova nota -->
+        <form class="form-card" action="/add_note" method="POST">
+            <label for="titulo">Título</label>
+            <input id="titulo" type="text" name="titulo" required>
+            
+            <label for="detalhes">Detalhes</label>
+            <textarea id="detalhes" name="detalhes" rows="4" required></textarea>
+            
+            <input type="submit" value="Criar">
+        </form>
+
+        <!-- Lista de notas -->
+        <div class="card-container">
+            {% for note in notes %}
+            <div class="card">
+                <h3>{{ note.titulo }}</h3>
+                <div class="card-content">
+                    <p>{{ note.detalhes }}</p>
+                    <div class="card-footer">
+                        <small>Criado em: {{ note.data_criacao }}</small>
+                        <div class="card-actions">
+                            <a href="{{ url_for('edit_note', id=note.id) }}" class="edit-button">Editar</a>
+                            <a href="{{ url_for('delete_note', id=note.id) }}" class="delete-button" 
+                               onclick="return confirm('Tem certeza que deseja deletar esta nota?')">Deletar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

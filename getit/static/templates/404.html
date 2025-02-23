@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Página não encontrada - Get-it</title>
+    <!-- Referência ao arquivo CSS na pasta static -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="appbar">
+        <!-- Logo e slogan -->
+        <img src="{{ url_for('static', filename='img/logo-getit.png') }}" class="logo" alt="Logo Get-it">
+        <p>Como o Post-it, mas com outro verbo</p>
+    </div>
+
+    <div class="error-container">
+        <h1>404</h1>
+        <h2>Ops! Página não encontrada</h2>
+        <p>A página que você está procurando não existe ou foi movida.</p>
+        <!-- Link de retorno para a página inicial -->
+        <a href="{{ u

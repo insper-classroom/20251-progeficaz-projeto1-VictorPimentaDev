@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Nota</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="appbar">
+        <img src="{{ url_for('static', filename='img/logo-getit.png') }}" class="logo">
+        <p>Como o Post-it, mas com outro verbo</p>
+    </div>
+
+    <div class="form-card">
+        <form method="POST">
+            <label for="titulo">Título</label>
+            <input id="titulo" type="text" name="titulo" value="{{ note.titulo }}" required>
+            
+            <label for="detalhes">Detalhes</label>
+            <textarea id="detalhes" name="detalhes" rows="4" required>{{ note.detalhes }}</textarea>
+            
+            <div class="button-group">
+                <input type="submit" value="Salvar">
+                <a href="{{ url_for('list_notes') }}" class="button">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
